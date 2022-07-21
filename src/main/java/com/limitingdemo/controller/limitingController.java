@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class limitingController {
     /**
      * 基于Redis AOP限流
-     * 这里的参数也可以进行动态配置
+     * 1.这里的参数也可以进行动态配置
      * 用mysql创建一个记录表，并把数据缓存到redis
      * 在切面中根据url获取相关配置
+     * 2.如果是单体应用可以放到过滤器中进行，如果微服务应用可以放到网关进行统一处理
      */
     @GetMapping("/test")
     @RedisLimit(key = "redis-limit:test", permitsPerSecond = 2, expire = 1, msg = "当前排队人数较多，请稍后再试！")
