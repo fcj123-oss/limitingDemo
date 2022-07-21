@@ -52,7 +52,6 @@ public class RedisLimitAop {
     public void before(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-
         //拿到RedisLimit注解，如果存在则说明需要限流
         RedisLimit redisLimit = method.getAnnotation(RedisLimit.class);
 
